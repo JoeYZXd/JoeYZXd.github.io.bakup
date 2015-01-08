@@ -1,0 +1,197 @@
+# Installing and configuring postfix #
+
+#### Step 1. Issue the bellow command to install postfix ####
+
+`[root@mail ~]# yum -y install postfix`
+
+-------------------------------------------------------------------------------
+
+#### Step 2. Now issue the below command to install SMTP AUTH packages. ####
+
+`[root@mail ~]# yum -y install cyrus-sasl cyrus-sasl-devel cyrus-sasl-gssapi cyrus-sasl-md5 cyrus-sasl-plain`  
+
+Postfix package installation is completed.
+
+-------------------------------------------------------------------------------
+
+#### Step 3. Issue the below commands one by one for creating SSL Cert. ####
+
+`[root@mail ~]# mkdir /etc/postfix/ssl`  
+`[root@mail ~]# cd /etc/postfix/ssl/`  
+`[root@mail ssl]# openssl genrsa -des3 -rand /etc/hosts -out smtpd.key 1024`  
+`[root@mail ssl]# chmod 600 smtpd.key`  
+`[root@mail ssl]# openssl req -new -key smtpd.key -out smtpd.csr`  
+`[root@mail ssl]# openssl x509 -req -days 365 -in smtpd.csr -signkey smtpd.key -out smtpd.crt`  
+`[root@mail ssl]# openssl rsa -in smtpd.key -out smtpd.key.unencrypted`  
+`[root@mail ssl]# mv -f smtpd.key.unencrypted smtpd.key`  
+`[root@mail ssl]# openssl req -new -x509 -extensions v3_ca -keyout cakey.pem -out cacert.pem -days 365`  
+
+-------------------------------------------------------------------------------
+
+#### Step 4. Now open */etc/postfix/main.cf* file. ####
+
+Find and commect the below lines.
+
+`#inet_interfaces = localhost #---> line no 116`  
+`#mydestination = $myhostname, localhost.$mydomain, localhost #--> line no 164`
+
+and add these lines at the bottom of the file.
+
+`myhostname = mail.krizna.com`  
+`mydomain = krizna.com`  
+`myorigin = $mydomain`  
+`home_mailbox = ~/mail`  
+`mynetworks = 127.0.0.0/8`  
+`inet_interfaces = all`  
+`mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain`  
+`smtpd_sasl_auth_enable = yes`  
+`smtpd_sasl_type = cyrus`  
+`smtpd_sasl_security_options = noanonymous`  
+`broken_sasl_auth_clients = yes`  
+`smtpd_sasl_authenticated_header = yes`  
+`smtpd_recipient_restrictions = permit_sasl_authenticated,permit_mynetworks,reject_unauth_destination`  
+`smtpd_tls_auth_only = no`  
+`smtp_use_tls = yes`  
+`smtpd_use_tls = yes`  
+`smtp_tls_note_starttls_offer = yes`  
+`smtpd_tls_key_file = /etc/postfix/ssl/smtpd.key`  
+`smtpd_tls_cert_file = /etc/postfix/ssl/smtpd.crt`  
+`smtpd_tls_CAfile = /etc/postfix/ssl/cacert.pem`  
+`smtpd_tls_received_header = yes`  
+`smtpd_tls_session_cache_timeout = 3600s`  
+`tls_random_source = dev:/dev/urandom`
+
+-------------------------------------------------------------------------------
+
+#### Step 5. Now open */etc/postfix/master.cf* file and add the below line after smtp ####
+
+`smtps     inet  n       -       n       -       -       smtpd`  
+`-o smtpd_sasl_auth_enable=yes`  
+`-o smtpd_reject_unlisted_sender=yes`  
+`-o smtpd_recipient_restrictions=permit_sasl_authenticated,reject`  
+`-o broken_sasl_auth_clients=yes`  
+
+-------------------------------------------------------------------------------
+
+#### Step 6. Now start postfix and saslauthd service ####
+
+`[root@mail ~]# service postfix start`
+
+`[root@mail ~]# service saslauthd start`
+
+\>\> Issue the below commands to start the postfix and saslauthd at startup
+
+`[root@mail ~]# chkconfig --level 235 postfix on`
+
+`[root@mail ~]# chkconfig --level 235 saslauthd on`
+
+-------------------------------------------------------------------------------
+
+#### Step 7. Now check your smtp connectivity, just telnet localhost on port 25 and type this command `ehlo localhost` ####
+
+`[root@mail ~]# telnet localhost 25`  
+`Trying ::1...`  
+`Connected to localhost.`  
+`Escape character is '^]'.`  
+`220 mail.krizna.com ESMTP Postfix`  
+`ehlo localhost <---- type this command`  
+`250-mail.krizna.com`  
+`250-PIPELINING`  
+`250-SIZE 10240000`  
+`250-VRFY`  
+`250-ETRN`  
+`250-STARTTLS`  
+`250-AUTH PLAIN LOGIN`  
+`250-AUTH=PLAIN LOGIN`  
+`250-ENHANCEDSTATUSCODES`  
+`250-8BITMIME`  
+`250 DSN`  
+`quit`  
+`221 2.0.0 Bye`  
+`Connection closed by foreign host.`
+
+If you get his output .. Great .. everything is fine till now.
+
+# Installing and configuring dovecot #
+
+#### Step 1. Issue this command to install dovecot ####
+
+`[root@mail ~]# yum -y install dovecot`
+
+-------------------------------------------------------------------------------
+
+#### Step 2. Config dovecot  ####
+
+After installation open */etc/dovecot/dovecot.conf* file and add the below line at the end of file. Please make sure mail\_location is same as the home\_mailbox in postfix configuration.
+
+`protocols = imap pop3`  
+`mail_location = maildir:~/mail`  
+`pop3_uidl_format = %08Xu%08Xv`
+
+-------------------------------------------------------------------------------
+
+#### Step 3. Now start dovecot service  ####
+
+`[root@mail ~]# service dovecot start`
+
+\>\> Issue the below command to start the dovecot at startup
+
+`[root@mail ~]# chkconfig --level 235 dovecot on`
+
+-------------------------------------------------------------------------------
+
+#### Step 4. Now test your pop3 connectivity ####
+
+`[root@mail ~]# telnet localhost 110`  
+`Trying ::1...`  
+`Connected to localhost.`  
+`Escape character is '^]'.`  
+`+OK Dovecot ready.`  
+`quit`  
+`+OK Logging out`  
+`Connection closed by foreign host.`
+
+Yes .. your server is ready to receive mails.
+
+-------------------------------------------------------------------------------
+
+# Install a Mail Client #
+
+There are a variety of clients we can use—here we will connect with MailX.
+
+`yum install mailx`
+
+After you agree to the prompt, mailx will finish up installing.
+
+Then, to send emails, type this command into terminal, substituting in the email that you are looking to send your message to.
+
+`mail user@example.org`
+
+Terminal will ask for a subject line. Type one in, then press enter. On the subsequent lines you can type your message. It will only be sent when you press enter, and type in a period.
+
+Your letter will look something like this:
+
+`[root@mail ~]# mail user@example.org`  
+`Subject: Hello`  
+`This is a test message.`  
+`Regards,`  
+    
+
+`.`  
+`EOT`
+
+Congratulations—now you have postfix installed and email running. You are all set to use your virtual private server to send email.
+
+-------------------------------------------------------------------------------
+
+# Adding Users for Postfix #
+
+最简单的创建用户的方式就是创建系统用户，Postfix会处理其它的事情，由于我们只需要这些新创建的用户用来收发邮件，所以这些帐户不需要登录系统的权限。
+
+`[root@mail ~]adduser -s /sbin/nologin username`  
+`[root@mail ~]passwd username`
+
+这样我们就可以使用这些新帐户进行收发邮件了，这些邮件都保存在“/home/username/mail/” 目录下。
+
+-------------------------------------------------------------------------------
+
