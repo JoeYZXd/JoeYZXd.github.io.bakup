@@ -1,0 +1,31 @@
+{
+  "name": "JoeYZXd.github.io",
+  "version": "0.0.0",
+  "description": "Joey's Github Blog",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.2",
+    "grunt-bower-task": "^0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bower": "^0.17.0",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-qunit": 
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoeYZXd/JoeYZXd.github.io.git"
+  },
+  "author": "Joey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeYZXd/JoeYZXd.github.io/issues"
+  },
+  "homepage": "https://github.com/JoeYZXd/JoeYZXd.github.io"
+}

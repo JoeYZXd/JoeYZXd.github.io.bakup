@@ -1,0 +1,17 @@
+module.exports = function(grunt) {
+	grunt.loadNpmTasks('grunt-bower-task');
+
+	grunt.initConfig({
+		bower : {
+			dev : {
+				dest : ".",
+				js_dest : "javascripts/lib",
+				css_dest : "stylesheets",
+				fonts_dest : "fonts",
+				options: {
+					stripAffix: true
+				}
+			}
+		}
+	});
+};

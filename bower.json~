@@ -1,0 +1,22 @@
+{
+  "name": "JoeYZXd.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/JoeYZXd/JoeYZXd.github.io",
+  "authors": [
+    "joey <joy.zhangxiaodong@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "requirejs": "~2.1.16",
+    "bootstrap": "~3.3.2"
+  }
+}
