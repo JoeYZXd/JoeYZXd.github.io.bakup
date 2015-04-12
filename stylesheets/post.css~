@@ -1,0 +1,8 @@
+.post-info {
+	height: 150px;
+}
+
+.post-info .post-title {
+	font-size: 4em;
+	font-weight: 900;
+}

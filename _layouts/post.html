@@ -1,0 +1,82 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>{{ page.title }}</title>
+
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/global.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/post.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" media="screen"/>
+    <script type="text/javascript" src="/lib/jquery/jquery.js"></script>
+
+  </head>
+
+  <body class="dark-flat">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+
+          </button>
+          <a class="navbar-brand" href="#">The Journey</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="menu">
+            <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">首页</a>
+          </li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">博客</a>
+            <ul class="dropdown-menu" role="menu">
+			  {% for category in site.data.categories %}
+			  <li><a href="/#{{ category[0] }}">{{ category[1] }}</a></li>
+			  {% endfor %}
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">小店</a>
+          </li>
+          <li>
+            <a href="#">联系我</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="container" class="container-fluid main-content">
+	  <div class="row">
+        <div class="col-sm-12 post-info">
+		  <div class="post-title">
+			{{ page.title }}
+		  </div>
+		  <div class="post-footnote">
+			<span>创建于{{ page.date | date: '%b %d, %Y' }}</span>
+			<span><a class="grey-link" href='/#{{ page.categories }}'>{{ site.data.categories['code'] }}</a></span>
+			<span class="comment-count glyphicon glyphicon-comment"></span>3			
+		  </div>
+        </div>
+      </div>
+      <div class="row">
+		<div class="col-sm-9 post-content">
+		  {% if page.cover != null %}
+		  <div class="post-cover">
+			<img src="{{ page.cover }}" width="100%"/>
+		  </div>
+		  {% endif %}
+		  <div class="post-main-content">
+			{{ content }}
+		  </div>
+		  <div class="post-comment">
+
+		  </div>
+		</div>
+		<div class="col-sm-3">
+		</div>
+	  </div>
+	</div>
+  </body>
+</html>

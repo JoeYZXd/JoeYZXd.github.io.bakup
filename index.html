@@ -1,3 +1,6 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +22,7 @@
     -->
     <![endif]-->
 
-    <title>JoeY's 张小东</title>
+    <title>JoeY's Journey</title>
   </head>
 
   <body class="dark-flat">
@@ -33,21 +36,15 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown active">
+          <li class="active menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">首页</a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">HomePage1</a></li>
-
-            </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">博客</a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">禅修</a></li>
-              <li><a href="#">技术</a></li>
-              <li><a href="#">阅读</a></li>
-              <li><a href="#">电影</a></li>
-              <li><a href="#">跑步</a></li>
+			  {% for category in site.data.categories %}
+			  <li><a href="/#{{ category[0] }}">{{ category[1] }}</a></li>
+			  {% endfor %}
             </ul>
           </li>
           <li class="dropdown">
@@ -78,31 +75,43 @@
       <div class="row">
         <div class="col-sm-12" id="postEntries">
           <div id="timelineLine"></div>
-          <div id="post-1" class="post-entry col-sm-6 pull-left">
+		  {% for post in site.posts %}
+	      <div id="post-{{ forloop.index }}" class="post-entry col-sm-6 pull-{% cycle 'left', 'right' %}">
             <div class="post-entry-wrapper">
               <div class="post-entry-marker"></div>
-              <div class="classic-date">MAR 3, 2015</div>
-              <a href="http://www.linglongxiaodian.com">
+              <div class="classic-date">{{ post.date | date: '%b %d, %Y' }}</div>
+			  {% if post.cover != null %}
+              <a href="{{ post.url }}">
                 <div class="post-top-image">
                   <div class="post-fader-grid">
                     <div class="entypo-icn-camera titled-link-icon"></div>
-                    <img src="http://www.munto.net/wp-content/blogs.dir/12/files/2013/02/fashion-840x337.jpg"
+                    <img src="{{ post.cover }}"
                          class="custom-img grid_image boxed_shadow" alt=""/>
                   </div>
                 </div>
               </a>
+			  {% endif %}
               <div class="post-title">
                 <h2>
-                  <a href="http://www.linglongxiaodian.com" class="color-link">
-                    <strong>玲珑小店</strong>
+                  <a href="{{ post.url }}" class="color-link">
+                    <strong>{{ post.title }}</strong>
                   </a>
                 </h2>
               </div>
               <div class="post-category">
-                <h4>Work</h4>
+                <a href="/?category={{ post.categories }}">
+				  {{ post.categories }}
+				</a>
               </div>
+			  <div class="post-excerpt">
+				{{ post.excerpt }}
+			  </div>
+			  <div class="post-btns">
+				<a href="{{ post.url }}" class="read-more-btn">READ MORE</a>
+			  </div>
             </div>
           </div>
+		  {% endfor %}
         </div>
       </div>
       <div class="row">

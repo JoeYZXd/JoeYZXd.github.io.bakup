@@ -1,3 +1,5 @@
 permalink: /:categories/:year/:month/:day/:title
 
 exclude: ["README.md", "*~", "Gruntfile.js", "bower.json", "bower_components", "node_modules", "package.json"]
+
+excerpt_separator: <!--more-->

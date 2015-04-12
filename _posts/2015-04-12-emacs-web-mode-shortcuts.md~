@@ -1,0 +1,14 @@
+---
+layout: post
+title: EMACS web-mode 快捷键
+---
+
+web-mode.el是一个非常好用的HTML文档编辑工具。
+HTML文档包括javascript, html, css。
+由于快捷键太容易忘记了，在这备份一下。
+
+<!--more-->
+
+### Generl
++ `M-;` comment / uncomment line(s)
++ `C-c C-f` toggle folding on a tag/block
