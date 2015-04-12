@@ -1,6 +1,9 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <!--
@@ -19,64 +22,27 @@
     <![endif]-->
 
     <title>JoeY's 张小东</title>
-</head>
+  </head>
 
-<body class="dark-flat">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-
-                </button>
-                <a class="navbar-brand" href="#">The Journey</a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">首页</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">HomePage1</a></li>
-
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">博客</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">禅修</a></li>
-                        <li><a href="#">技术</a></li>
-                        <li><a href="#">阅读</a></li>
-                        <li><a href="#">电影</a></li>
-                        <li><a href="#">跑步</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">小店</a>
-                </li>
-                <li class="active">
-                    <a href="contact.html">联系我</a>
-                </li>
-            </ul>
-        </div>
-
-    </nav>
-
+  <body class="dark-flat">
+	{% include navbar.html contact_active="active" %}
     <div id="container" class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12" id="greeting">
-                <div id="greeting-message" class="row">
+      <div class="row">
+        <div class="col-sm-12" id="greeting">
+          <div id="greeting-message" class="row">
 
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="row">
-            <iframe src="location.html" width="950" height="300" style="border:none;margin: 30px 0;"></iframe>
-        </div>
-        <div class="row">
+      </div>
+      <div class="row">
+        <iframe src="location.html" width="950" height="300" style="border:none;margin: 30px 0;"></iframe>
+      </div>
+      <div class="row">
 
-        </div>
+      </div>
     </div>
     <footer>
-        <div>© 2015 Joey ZhangXiaodong All rights reserved.</div>
+      <div>© 2015 Joey ZhangXiaodong All rights reserved.</div>
     </footer>
-</body>
+  </body>
 </html>

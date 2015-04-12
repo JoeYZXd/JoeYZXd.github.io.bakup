@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+
+      </button>
+      <a class="navbar-brand" href="/">The Journey</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="{{ include.homepage_active }} menu">
+        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">首页</a>
+      </li>
+      <li class="dropdown {{ include.blog_active }}">
+        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">博客</a>
+        <ul class="dropdown-menu" role="menu">
+		  {% for category in site.data.categories %}
+		  <li><a href="/?category={{ category[0] }}">{{ category[1] }}</a></li>
+		  {% endfor %}
+        </ul>
+      </li>
+      <li class="dropdown {{ include.shop_active }}">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">小店</a>
+      </li>
+      <li class="menu {{ include.contact_active }}">
+        <a href="/contact.html">联系我</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>

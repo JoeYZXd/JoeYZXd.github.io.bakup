@@ -38,8 +38,76 @@
 .post-info .post-footnote span.comment-count {
 	border: none;
 	padding-right: 10px;
+	position: relative;
 }
 
 .post-main-content {
 	margin-top: 30px;
+}
+
+.post-comment {
+	min-height: 200px;
+}
+
+.post-navigation {
+	height: 200px;
+}
+
+.post-comment-title {
+	font-size: 2em;
+	text-align: center;
+	width: 100%;
+	color: #eec133;
+	position: relative;
+	font-weight: 900;
+}
+
+.post-comment-left-line {
+	position: absolute;
+	left: 0;
+	width: 45%;
+	top: 20px;
+	border-bottom: 1px solid rgba(60, 60, 60, 0.6);
+}
+
+.post-comment-right-line {
+	position: absolute;
+	right: 0;
+	width: 45%;
+	top: 20px;
+	border-bottom: 1px solid rgba(60, 60, 60, 0.6);
+}
+
+.post-info .post-footnote .disqus-comment-count {
+	padding: 0 20px;
+	position: absolute;
+	top: -2px;
+	font-size: 1em;
+	font-weight: 900;
+}
+
+.post-navigation {
+	margin-top: 30px;
+	border-top: 1px solid rgba(60, 60, 60, 0.6);
+	padding-top: 20px;
+}
+
+.post-navigation .previous-page,
+.post-navigation .next-page {
+	font-size: 1.5em;
+	font-weight: 900;
+	color: #fff;
+}
+
+.post-navigation .previous-page:hover,
+.post-navigation .next-page:hover {
+	color: #eec133;
+}
+
+.post-navigation .previous-page {
+	float:left;
+}
+
+.post-navigation .next-page {
+	float:right;
 }

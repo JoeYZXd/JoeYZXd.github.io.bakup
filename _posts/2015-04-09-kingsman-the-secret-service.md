@@ -3,6 +3,7 @@ layout: post
 title: 王牌特工：特工学院
 cover: /assets/kingsman_the_secret_service.jpg
 category: movie
+comments: true
 ---
 
 对007系列其实并不是很感冒，但由于口碑不错，而且英式特工三件套还是很带感的，所以没事干就去看了。看完确实有不少惊喜。
