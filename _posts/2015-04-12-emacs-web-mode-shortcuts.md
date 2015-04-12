@@ -1,6 +1,7 @@
 ---
 layout: post
 title: EMACS web-mode 快捷键
+comments: true
 ---
 
 web-mode.el是一个非常好用的HTML文档编辑工具。
