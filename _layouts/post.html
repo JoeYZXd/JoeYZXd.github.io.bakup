@@ -26,7 +26,24 @@
 		  </div>
 		  <div class="post-footnote">
 			<span>创建于{{ page.date | date: '%b %d, %Y' }}</span>
-			<span><a class="grey-link" href='/#{{ page.categories }}'>{{ site.data.categories['code'] }}</a></span>
+			<span>
+			  <a class="grey-link" href='/#{{ page.categories }}'>
+				{% case page.category %}
+				  {% when 'code' %} 
+				  技术
+				  {% when 'movie' %} 
+				  电影
+				  {% when 'zen' %} 
+				  禅修
+				  {% when 'reading' %} 
+				  阅读
+				  {% when 'running' %}
+				  跑步
+				  {% else %} 
+				  其它
+				  {% endcase %}
+			  </a>
+			</span>
 			<span class="comment-count glyphicon glyphicon-comment">
 			  <span class="disqus-comment-count" data-disqus-identifier="{{ page.id }}"></span>
 			</span>

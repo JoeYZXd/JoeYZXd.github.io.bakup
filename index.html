@@ -69,7 +69,20 @@
               </div>
               <div class="post-category">
                 <a href="/?category={{ post.categories }}">
-				  {{ post.categories }}
+				  {% case post.category %}
+				  {% when 'code' %} 
+				  技术
+				  {% when 'movie' %} 
+				  电影
+				  {% when 'zen' %} 
+				  禅修
+				  {% when 'reading' %} 
+				  阅读
+				  {% when 'running' %}
+				  跑步
+				  {% else %} 
+				  其它
+				  {% endcase %}
 				</a>
               </div>
 			  <div class="post-excerpt">
