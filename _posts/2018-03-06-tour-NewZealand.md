@@ -142,8 +142,8 @@ category: Tour
 
 ### 入境卡
 
--   ![img](entry-application-1.jpeg)
--   ![img](entry-application-2.jpeg)
+-   ![img](/assets/img/entry-application-1.jpeg)
+-   ![img](/assets/img/entry-application-2.jpeg)
 
 
 <a id="orgc5cee4d"></a>
@@ -278,7 +278,7 @@ category: Tour
     -   从夏尔餐厅或Matamata I-Site游客中心换票后集合，导游带领乘坐景区观光巴士
     -   从各地出发到此所需时间见下图
 
-![img](hobbiton.jpeg)
+![img](/assets/img/hobbiton.jpeg)
 
 -   [ ] 罗托鲁阿（Rotorua）
 
