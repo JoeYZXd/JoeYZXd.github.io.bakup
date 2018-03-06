@@ -1,5 +1,6 @@
 ---
 layout: post
+cover: /assets/NewZealand.jpeg
 title: 新西兰行程
 category: Tour
 ---
