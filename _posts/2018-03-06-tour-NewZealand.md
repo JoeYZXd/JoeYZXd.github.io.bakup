@@ -5,6 +5,10 @@ title: 新西兰行程
 category: Tour
 ---
 
+蜜月旅行，新西兰自驾，我们来啦！
+
+<!--more-->
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
