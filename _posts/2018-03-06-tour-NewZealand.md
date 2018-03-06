@@ -1,3 +1,9 @@
+---
+layout: post
+title: 新西兰行程
+category: Tour
+---
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
